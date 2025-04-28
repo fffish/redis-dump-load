@@ -479,7 +479,7 @@ def _writer(r, p, key, type, value, ttl, expireat, use_expireat):
             p.sadd(key, element)
     elif type == 'zset':
         for element, score in value:
-            p.zadd(key, element, score)
+            p.zadd(key, {element: score})
     elif type == 'hash':
         p.hmset(key, value)
     else:
