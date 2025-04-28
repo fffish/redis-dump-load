@@ -501,6 +501,7 @@ def main():
     import os.path
     import re
     import sys
+    import getpass
 
     DUMP = 1
     LOAD = 2
@@ -514,7 +515,7 @@ def main():
         if options.socket:
             args['unix_socket_path'] = options.socket
         if options.password:
-            args['password'] = options.password
+            args['password'] = getpass.getpass("input password ")
         if options.db:
             args['db'] = int(options.db)
         if options.encoding:
@@ -587,7 +588,7 @@ def main():
     parser.add_option('-H', '--host', help='connect to HOST (default localhost)')
     parser.add_option('-p', '--port', help='connect to PORT (default 6379)')
     parser.add_option('-s', '--socket', help='connect to SOCKET')
-    parser.add_option('-w', '--password', help='connect with PASSWORD')
+    parser.add_option('-w', '--password', help='connect with PASSWORD', action='store_true')
     if help == DUMP:
         parser.add_option('-d', '--db', help='dump DATABASE (0-N, default 0)')
         parser.add_option('-k', '--keys', help='dump only keys matching specified glob-style pattern')
